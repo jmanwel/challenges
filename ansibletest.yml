@@ -1,0 +1,28 @@
+---
+-name: Ansible
+hosts: routers
+delegate_to: localhost
+tasks:
+
+  -name: Create snipet
+   copy:
+     dest: {{ ansible_host }}.config
+     content: |
+       //////////////////////////////////////////////////////
+       //   Ticket:         ticket_n
+       //   Destination Device: {{ ansible_host }}
+       //   Date: {{ ansible_date_time.date }}
+       //////////////////////////////////////////////////////
+
+        interface GigabitEthernet0/0/0
+          ip helper-address {{ helper_addresses_1 }} 
+          ip helper-address {{ helper_addresses_2 }}
+   
+        ntp server {{ ntp_servers_1 }}
+        ntp server {{ ntp_servers_2 }}
+     register: file_content 
+  
+  - name: Debug content file
+    debug:
+     var: file_content
+...

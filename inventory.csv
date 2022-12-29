@@ -1,0 +1,4 @@
+device_name, ip, user, password
+equipo1, 1.1.1.1, admin, admin121
+equipo2, 1.1.1.2, admin, admin122
+equipo3, 1.1.1.3, admin, admin123
